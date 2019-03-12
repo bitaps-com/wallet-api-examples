@@ -168,3 +168,5 @@ More examples you can find in:
   - get_wallet_address_transaction - Wallet address transaction history
   - get_daily_statistics.php - Wallet dailt statistics
   - wallet_password.php - examples of set/remove wallet passwords and OTP (google auth compatible)
+  - callback_logs.php - get logs for wallet address notifications
+  
