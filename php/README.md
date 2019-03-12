@@ -30,7 +30,7 @@ Result:
     )
     
 _"wallet_id" parameter you should keep safe, in case no password or otp to your wallet this code give you
- full access to wallet. We recommend set password to your wallet._
+ full access to wallet. We recommend setting a password for your wallet._
 
 ### Step 2 Create wallet address:
 
@@ -60,7 +60,7 @@ Example:
       CURLOPT_CUSTOMREQUEST => "POST",
       CURLOPT_POSTFIELDS => json_encode($params)));
     $response = curl_exec($curl);
-
+    print_r(json_decode($response));
 Response:
 
     stdClass Object
@@ -75,3 +75,49 @@ Response:
     )
 
 _As "wallet_id" parameter you can use wallet_id or wallet_id_hash, we recommend use wallet_id_hash._
+
+
+### Step 3 Get wallet information:
+
+To create wallet use this API endpoints:
+
+  - https://api.bitaps.com/btc/testnet/v1/wallet/state/{wallet_id}  (testnet)
+  - https://api.bitaps.com/btc/v1/wallet/state/{wallet_id}
+
+Example:
+
+    $wallet_id = "0ddfcc11d0cd9490b23944b3648268981176eb8ebd04f7bbd29506bc2b8dba5a";
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/state/".$wallet_id,
+      CURLOPT_RETURNTRANSFER => true));
+    $response = curl_exec($curl);
+    print_r(json_decode($response));
+    
+Response:
+
+    stdClass Object
+    (
+        [address_count] => 8
+        [pending_received_amount] => 0
+        [pending_sent_amount] => 0
+        [received_amount] => 0
+        [sent_amount] => 0
+        [service_fee_paid_amount] => 0
+        [sent_tx] => 0
+        [received_tx] => 0
+        [pending_sent_tx] => 0
+        [pending_received_tx] => 0
+        [invalid_tx] => 0
+        [balance_amount] => 0
+        [create_date] => 2019-03-12T09:27:31Z
+        [create_date_timestamp] => 1552382851
+        [last_used_nonce] => 
+        [wallet_id_hash] => 0ddfcc11d0cd9490b23944b3648268981176eb8ebd04f7bbd29506bc2b8dba5a
+        [notification_link_domain] => 
+        [success_callbacks] => 0
+        [failed_callbacks] => 0
+        [currency] => BTC
+    )
+
+_For wallet with password you should provide HMAC signature for request, examples in get_wallet_state.php._
