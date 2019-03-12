@@ -42,6 +42,12 @@ confirmations depends on the amount of payment.
   - 0.1 BTC - 1 BTC  2 confirmation required 
   - more or equal 1 BTC 3 confirmation required 
   
+To create wallet use this API endpoints:
+
+  - https://api.bitaps.com/btc/testnet/v1/create/wallet/payment/address  (testnet)
+  - https://api.bitaps.com/btc/v1/create/wallet/payment/address
+  
+Example:
   
     $params = array("wallet_id"=> "0ddfcc11d0cd9490b23944b3648268981176eb8ebd04f7bbd29506bc2b8dba5a");
     $curl = curl_init();
