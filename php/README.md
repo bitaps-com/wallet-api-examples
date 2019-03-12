@@ -28,6 +28,9 @@ Result:
         [wallet_id_hash] => 0ddfcc11d0cd9490b23944b3648268981176eb8ebd04f7bbd29506bc2b8dba5a
         [currency] => BTC
     )
+    
+_ "wallet_id" parameter you should keep safe, in case no password or otp to your wallet this code give you
+ full access to wallet._
 
 ### Step 2 Create wallet address:
 
@@ -71,3 +74,4 @@ Response:
         [currency] => BTC
     )
 
+_As "wallet_id" parameter you can use wallet_id or wallet_id_hash, we recommend use wallet_id_hash._
