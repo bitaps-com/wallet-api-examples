@@ -162,7 +162,7 @@ Response:
 _For wallet with password you should provide HMAC signature for request, examples in send_payment.php._
 
 
-More examples you can find in this files:
+More examples:
 
   - get_wallet_transaction.php  - Wallet transaction history
   - get_wallet_address_transaction - Wallet address transaction history
