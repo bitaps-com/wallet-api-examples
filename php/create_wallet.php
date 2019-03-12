@@ -118,12 +118,3 @@ if ($err) {
 }
 
 
-
-
-
-echo "Example 1\n\n";
-echo "Create wallet:\n";
-
-
-
-

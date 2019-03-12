@@ -1,12 +1,12 @@
 <?php
 
 echo "Example 1\n\n";
-echo "Get wallet information:\n";
+echo "Get wallet addresses:\n";
 $wallet_id = "BTCvzHmmL1ijiBou7U8u9Ye1F4PxDtDQccYSvzAYNvJz866kCv9KA";
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/state/".$wallet_id,
+  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/addresses/".$wallet_id."?page=1&limit=5",
   CURLOPT_RETURNTRANSFER => true
 ));
 
@@ -23,12 +23,12 @@ if ($err) {
 
 
 echo "Example 2\n\n";
-echo "Get wallet information using wallet_id_hash:\n";
+echo "Get wallet addresses using wallet_id_hash:\n";
 $wallet_id = "0ddfcc11d0cd9490b23944b3648268981176eb8ebd04f7bbd29506bc2b8dba5a";
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/state/".$wallet_id,
+  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/addresses/".$wallet_id."?page=1&limit=5",
   CURLOPT_RETURNTRANSFER => true
 ));
 
@@ -44,7 +44,7 @@ if ($err) {
 
 
 echo "Example 3\n\n";
-echo "Get wallet information with password:\n";
+echo "Get wallet addresses with password:\n";
 
 $password = "secret";
 $wallet_id = "BTCvvwqKQWefFEGJ3F4Sqxr789ebdYmcB34wKpFXiGUSv958gHsvB";
@@ -56,7 +56,7 @@ $signature = hash_hmac("sha256",$msg,$key);
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/state/".$wallet_id_hash,
+  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/addresses/".$wallet_id_hash,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array("Access-Nonce: ".$nonce,"Access-Signature: ".$signature),
@@ -72,19 +72,14 @@ if ($err) {
 }
 
 
-
-
-
 echo "Example 4\n\n";
-echo "Create wallet information old style API:\n";
-$params = array("redeemcode"=> "BTCvzHmmL1ijiBou7U8u9Ye1F4PxDtDQccYSvzAYNvJz866kCv9KA");
-
+echo "Get wallet addresses created 2019.03.10 -> 2019.03.12:\n";
+$wallet_id = "0ddfcc11d0cd9490b23944b3648268981176eb8ebd04f7bbd29506bc2b8dba5a";
+$get_param = "?from_date=1552176000&to_date=1552348800&page=2&limit=5";
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://bitaps.com/api/get/redeemcode/info",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => json_encode($params)
+  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/addresses/".$wallet_id.$get_param ,
+  CURLOPT_RETURNTRANSFER => true
 ));
 
 $response = curl_exec($curl);

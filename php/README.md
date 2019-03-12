@@ -77,7 +77,7 @@ Response:
 _As "wallet_id" parameter you can use wallet_id or wallet_id_hash, we recommend use wallet_id_hash._
 
 
-### Step 3 Get wallet information:
+### Step 4 Get wallet information:
 
 To create wallet use this API endpoints:
 
@@ -121,3 +121,50 @@ Response:
     )
 
 _For wallet with password you should provide HMAC signature for request, examples in get_wallet_state.php._
+
+
+### Step 5 Send payment:
+
+To create wallet use this API endpoints:
+
+  - https://api.bitaps.com/btc/testnet/v1/wallet/send/payment/{wallet_id}  (testnet)
+  - https://api.bitaps.com/btc/v1/wallet/send/payment/{wallet_id}
+
+Example:
+
+    $wallet_id = "BTCup8vxNE9tcJLjSyYJtzQgkjQFqMpAess4k76GKnTW3kbn8Ydtv";
+    $wallet_id_hash = "133bfd12162c5a560d95bda0b0ed8b4f2d4b3d4c1d814c2d2100f03a5e71ae1e";
+    $params = array("receivers_list"=> array(array("address" => "3LwCq87PVvE3jAuikrMyqiMnPjX3k9mPjK",
+                                                   "amount" =>  "30000000"),),
+                    "wallet_id" => $wallet_id );
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/send/payment/".$wallet_id_hash,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => json_encode($params)
+    ));
+    
+    $response = curl_exec($curl);
+    print_r(json_decode($response));
+    
+Response:
+
+    stdClass Object
+    (
+        [error_code] => 22
+        [message] => not enough funds
+        [details] => 
+        [server_time] => 1552399683
+    )
+
+
+_For wallet with password you should provide HMAC signature for request, examples in send_payment.php._
+
+
+More examples you can find in:
+
+  - get_wallet_transaction.php  - Wallet transaction history
+  - get_wallet_address_transaction - Wallet address transaction history
+  - get_daily_statistics.php - Wallet dailt statistics
+  - wallet_password.php - examples of set/remove wallet passwords and OTP (google auth compatible)
