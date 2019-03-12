@@ -29,7 +29,7 @@ Result:
         [currency] => BTC
     )
     
-_ "wallet_id" parameter you should keep safe, in case no password or otp to your wallet this code give you
+_"wallet_id" parameter you should keep safe, in case no password or otp to your wallet this code give you
  full access to wallet. We recommend set password to your wallet._
 
 ### Step 2 Create wallet address:
