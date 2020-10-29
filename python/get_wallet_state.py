@@ -40,6 +40,6 @@ headers = {"Access-Nonce": str(nonce), "Access-Signature": signature}
 response = requests.request("GET", url, headers = headers)
 result = json.loads(response.text)
 print("Example 3")
-print("Get wallet information using wallet_id_hash:")
+print("Get wallet information using wallet_id_hash with password:")
 print(result)
 print("\n\n")
