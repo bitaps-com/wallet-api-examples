@@ -160,9 +160,9 @@ echo "Send payment with password:\n";
 $params = array("receivers_list"=> array(array("address" => "3LwCq87PVvE3jAuikrMyqiMnPjX3k9mPjK",
                                                "amount" =>  "30000000"),) );
 $params = json_encode($params);
-$password = "secret";
+$password = "123";
 $wallet_id = "BTCvvwqKQWefFEGJ3F4Sqxr789ebdYmcB34wKpFXiGUSv958gHsvB";
-$wallet_id_hash = "b9d3f36ed1e241b5b7f38ef7cb61b28edc6bf4a2b7e926306ca61d1ea8e41ad0";
+$wallet_id_hash = "31d361f0c2afe84edc821b864c1d2186d83a17811d01c2de3a3a1a06bae47410";
 $nonce=round(microtime(true) * 1000);
 $key = hash("sha256",(hash("sha256",$wallet_id.$password,true)),true);
 $msg = $wallet_id_hash.$params.$nonce;

@@ -48,7 +48,7 @@ echo "Get wallet information with password:\n";
 
 $password = "secret";
 $wallet_id = "BTCvvwqKQWefFEGJ3F4Sqxr789ebdYmcB34wKpFXiGUSv958gHsvB";
-$wallet_id_hash = "b9d3f36ed1e241b5b7f38ef7cb61b28edc6bf4a2b7e926306ca61d1ea8e41ad0";
+$wallet_id_hash = "06c9927385d35f812d1822c3bc0d32d38a9d82b1319ce1784c1f9d76fb757ded";
 $nonce=round(microtime(true) * 1000);
 $key = hash("sha256",(hash("sha256",$wallet_id.$password,true)),true);
 $msg = $wallet_id_hash.$nonce;
@@ -56,7 +56,7 @@ $signature = hash_hmac("sha256",$msg,$key);
 
 $curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.bitaps.com/btc/v1/wallet/state/".$wallet_id_hash,
+  CURLOPT_URL => "http://api.bitaps.phd/btc/v1/wallet/state/".$wallet_id_hash,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array("Access-Nonce: ".$nonce,"Access-Signature: ".$signature),
